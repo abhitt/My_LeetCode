@@ -16,16 +16,16 @@
 class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int len = 0;
-        ListNode temp = head;
+        ListNode curr = head;
         
         // Step 1: Traverse the linked list to find its length
-        while(temp != null) {
+        while(curr != null) {
             len++;
-            temp = temp.next;
+            curr = curr.next;
         }
         
         // Reset temp to the head of the list
-        temp = head;
+        curr = head;
         ListNode prev = null;
         int pos = len - n;
         
@@ -34,15 +34,15 @@ class Solution {
         
         // Step 2: Traverse the list again to reach the node just before the one to be removed
         for(int i = 0; i < pos; i++) {
-            prev = temp;
-            temp = temp.next;
+            prev = curr;
+            curr = curr.next;
         }
         
         // Step 3: Update the pointers to remove the node
-        prev.next = temp.next;
+        prev.next = curr.next;
         
         // Step 4: Delete the removed node
-        temp = null;
+        curr = null;
         
         return head;
     }
