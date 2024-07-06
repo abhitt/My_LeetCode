@@ -17,33 +17,56 @@ class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int len = 0;
         ListNode curr = head;
-        
-        // Step 1: Traverse the linked list to find its length
-        while(curr != null) {
+
+        ListNode prev = null;
+        while(curr!=null){
             len++;
             curr = curr.next;
         }
+
         
-        // Reset temp to the head of the list
+        int pos = len-n;
+
+        if(pos==0){
+            return head.next;
+          }
+
         curr = head;
-        ListNode prev = null;
-        int pos = len - n;
-        
-        // Special case: If the node to be removed is the head itself
-        if(pos == 0) return head.next;
-        
-        // Step 2: Traverse the list again to reach the node just before the one to be removed
-        for(int i = 0; i < pos; i++) {
-            prev = curr;
-            curr = curr.next;
+
+        for(int i=0; i<pos; i++){
+           prev = curr;
+           curr = curr.next; 
+         }
+
+          prev.next = curr.next;
+          curr = null;
+          return head;
         }
-        
-        // Step 3: Update the pointers to remove the node
-        prev.next = curr.next;
-        
-        // Step 4: Delete the removed node
-        curr = null;
-        
-        return head;
-    }
 }
+
+
+
+
+
+
+ // while(curr != null) {
+        //     len++;
+        //     curr = curr.next;
+        // }
+        
+        // curr = head;
+        // ListNode prev = null;
+        // int pos = len - n;
+        
+        // if(pos == 0) return head.next;
+        
+        // for(int i = 0; i < pos; i++) {
+        //     prev = curr;
+        //     curr = curr.next;
+        // }
+        
+        // prev.next = curr.next;
+        
+        // curr = null;
+        
+        // return head;
